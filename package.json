@@ -1,5 +1,5 @@
 {
-  "name": "logging",
+  "name": "@lionellbriones/logging",
   "version": "3.2.0",
   "description": "Lightweight informative modern console logging.",
   "main": "lib",
@@ -20,7 +20,7 @@
     "precommit": "npm -s run test",
     "np": "np"
   },
-  "repository": "http://github.com/dylang/logging",
+  "repository": "https://github.com/lionellbriones/logging",
   "author": "Dylan Greene <dylang@gmail.com>",
   "license": "MIT",
   "dependencies": {
