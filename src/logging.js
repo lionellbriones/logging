@@ -8,9 +8,7 @@ import nicelyFormat from 'nicely-format';
 import createDebug from 'debug';
 
 const time = () => {
-    const now = new Date();
-    const date = new Date(now.getTime() - (now.getTimezoneOffset() * 60000));
-    return date.toISOString().replace(/.*T(.*)Z/, '$1');
+    return new Date(Date.now()).toString().slice(0, 33);
 };
 
 const indentText = (text) => text.replace(/^(?!\s+$)/mg, ' '.repeat(13)).trim();
