@@ -24,11 +24,18 @@ test('log debug', (t) => {
 });
 
 test('log info', (t) => {
-    const logFunction = spy();
+    const logFunction = {
+        debug: spy(),
+        trace: spy(),
+        info: spy(),
+        log: spy(),
+        error: spy(),
+        warn: spy()
+    };
     const { info } = createLogger('logging.test', { logFunction });
     info(...COMPLEX_OBJECT_FOR_TESTING);
 
-    const logOutput = logFunction.getCall(0).args;
+    const logOutput = logFunction.info.getCall(0).args;
     t.truthy(logOutput);
 
     // snapshots broken https://github.com/avajs/ava/issues/1218
@@ -36,11 +43,18 @@ test('log info', (t) => {
 });
 
 test('log warning', (t) => {
-    const logFunction = spy();
+    const logFunction = {
+        debug: spy(),
+        trace: spy(),
+        info: spy(),
+        log: spy(),
+        error: spy(),
+        warn: spy()
+    };
     const { warn } = createLogger('logging.test', { logFunction });
     warn(...COMPLEX_OBJECT_FOR_TESTING);
 
-    const logOutput = logFunction.getCall(0).args;
+    const logOutput = logFunction.warn.getCall(0).args;
     t.truthy(logOutput);
 
     // snapshots broken https://github.com/avajs/ava/issues/1218
@@ -48,11 +62,18 @@ test('log warning', (t) => {
 });
 
 test('log error', (t) => {
-    const logFunction = spy();
+    const logFunction = {
+        debug: spy(),
+        trace: spy(),
+        info: spy(),
+        log: spy(),
+        error: spy(),
+        warn: spy()
+    };
     const { error } = createLogger('logging.test', { logFunction });
     error(...COMPLEX_OBJECT_FOR_TESTING);
 
-    const logOutput = logFunction.getCall(0).args;
+    const logOutput = logFunction.error.getCall(0).args;
     t.truthy(logOutput);
 
     // snapshots broken https://github.com/avajs/ava/issues/1218

@@ -5,10 +5,10 @@ function createLogger(/* title */) {
         console[key].apply(console, arguments);
     }
     return {
-        info: logger("info"),
-        warn: logger("warn"),
-        error: logger("error"),
-        debug: logger("debug")
+        info: logger('info'),
+        warn: logger('warn'),
+        error: logger('error'),
+        debug: logger('debug')
     };
 }
 

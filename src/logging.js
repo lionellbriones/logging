@@ -47,7 +47,11 @@ const logger = ({
             }
         });
     }).map(indentText);
-    logFunction[key](gray(time()), `[${title}]`, ...formattedMessages);
+    if (key) {
+        logFunction[key](gray(time()), `[${title}]`, ...formattedMessages);
+    } else {
+        logFunction(gray(time()), `[${title}]`, ...formattedMessages);
+    }
 };
 
 const createLogger = (title,
@@ -60,8 +64,7 @@ const createLogger = (title,
             logger({
                 title: yellow(`DEBUG ${title}`),
                 messages,
-                logFunction: debugFunction,
-                key: 'debug'
+                logFunction: debugFunction
             });
         },
         info(...messages) {
