@@ -16,7 +16,8 @@ const indentText = (text) => text.replace(/^(?!\s+$)/mg, ' '.repeat(13)).trim();
 const logger = ({
                     title,
                     messages,
-                    logFunction
+                    logFunction,
+                    key
                 }) => {
     const formattedMessages = messages.map((message) => {
         if (typeof message === 'string') {
@@ -46,55 +47,61 @@ const logger = ({
             }
         });
     }).map(indentText);
-    logFunction(gray(time()), `[${title}]`, ...formattedMessages);
+    logFunction[key](gray(time()), `[${title}]`, ...formattedMessages);
 };
 
 const createLogger = (title,
                       {
                           debugFunction = createDebug(title),
-                          logFunction = console.log
+                          logFunction = console
                       } = {}) => {
     return {
         debug(...messages) {
             logger({
                 title: yellow(`DEBUG ${title}`),
                 messages,
-                logFunction: debugFunction
+                logFunction: debugFunction,
+                key: 'debug'
             });
         },
         info(...messages) {
             logger({
                 title: blue(title),
                 messages,
-                logFunction
+                logFunction,
+                key: 'info'
             });
         },
         warn(...messages) {
             logger({
                 title: yellow(`WARNING ${title}`),
                 messages,
-                logFunction
+                logFunction,
+                key: 'warn'
             });
         },
         error(...messages) {
             logger({
                 title: red(`ERROR ${title}`),
                 messages,
-                logFunction
+                logFunction,
+                key: 'error'
             });
         },
         fatal(...messages) {
             logger({
                 title: red(`========= FATAL ${title} =========`),
                 messages,
-                logFunction
+                logFunction,
+                key: 'error'
             });
         },
         trace(...messages) {
             logger({
                 title: red(`TRACE ${title}`),
                 messages,
-                logFunction
+                logFunction,
+                key: 'trace'
             });
         }
 
